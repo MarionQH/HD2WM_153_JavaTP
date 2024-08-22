@@ -10,8 +10,12 @@
     <script src="vendor/uikit/js/uikit.min.js"></script>
     <script src="vendor/uikit/js/uikit-icons.min.js"></script>
 
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="vendor\fontawesome\css\fontawesome.min.css"/>
+
     <!-- My theme -->
     <link rel="stylesheet" href="eni-theme.css"/>
+
 
     <meta charset="UTF-8">
     <title> Accueil </title>
@@ -21,16 +25,23 @@
 <div class="eni-common-page-padding">
 
     <div class="eni-title">
-        <h1> Accueil </h1>
+        <h1> Accueil - films pour enfants</h1>
     </div>
 
-    <div class="eni-text">
-        <p>Cliquez sur le lien suivant pour afficher la liste des films:</p>
-    </div>
+    <nav class="eni-navbar" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active"><a href="accueil">Accueil</a></li>
+                <li class="uk-parent"><a href="movies">Films</a></li>
+                <li class="uk-parent"><a href="details">Détails</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <div>
-        <a class="uk-link-muted eni-link-click eni-link-click" href="movies.html"> Liste de films</a>
+        <a class="uk-link-muted eni-link-click eni-link-click" href="movies"><img class="eni-popcorn" src="popcorn.jpg" alt="popcorn" ></a>
     </div>
+
 
 </div>
 </body>
