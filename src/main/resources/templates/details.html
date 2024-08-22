@@ -4,17 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- UIkit CSS -->
-    <link rel="stylesheet" href="vendor/uikit/css/uikit.min.css" />
+    <link rel="stylesheet" href="/vendor/uikit/css/uikit.min.css" />
 
     <!-- UIkit JS -->
-    <script src="vendor/uikit/js/uikit.min.js"></script>
-    <script src="vendor/uikit/js/uikit-icons.min.js"></script>
+    <script src="/vendor/uikit/js/uikit.min.js"></script>
+    <script src="/vendor/uikit/js/uikit-icons.min.js"></script>
 
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="vendor\fontawesome\css\fontawesome.min.css"/>
+    <link rel="stylesheet" href="/vendor\fontawesome\css\fontawesome.min.css"/>
 
     <!-- My theme -->
-    <link rel="stylesheet" href="eni-theme.css"/>
+    <link rel="stylesheet" href="/eni-theme.css"/>
 
     <meta charset="UTF-8">
     <title>Details</title>
@@ -32,19 +32,18 @@
             <ul class="uk-navbar-nav">
                 <li class="uk-active"><a href="accueil">Accueil</a></li>
                 <li class="uk-parent"><a href="movies">Films</a></li>
-                <li class="uk-parent"><a href="details">Détails</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="eni-movie-bloc uk-margin uk-padding ">
+    <div th:each ="movies : ${movie}" class="eni-movie-bloc uk-margin uk-padding ">
         <div class="uk-text-center">
-            <p>Thelma la licorne</p>
-            <p>Année: 2024</p>
-            <p>Durée: 1h33m</p>
-            <p>Une ponette qui chante en rêvant de célébrité accède instantanément à la notoriété lorsqu'elle se transforme en licorne pailletée. Mais la gloire n'a rien d'une sinécure.</p>
+            <p th:text ="${movie.title}"></p>
+            <p th:text ="${movie.year}"></p>
+            <p th:text ="${movie.duration} + ' min'"></p>
+            <p th:text ="${movie.synopsis}"> </p>
         </div>
-        <img class= "eni-img-movie" src="thelma.jpg"></img>
+        <img th:src="@{'/'+ ${movie.url}}" class= "eni-img-movie"></img>
     </div>
 
 </div>

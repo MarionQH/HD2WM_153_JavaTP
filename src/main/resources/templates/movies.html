@@ -4,24 +4,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- UIkit CSS -->
-    <link rel="stylesheet" href="vendor/uikit/css/uikit.min.css"/>
+    <link rel="stylesheet" href="/Vendor/uikit/css/uikit.min.css"/>
 
     <!-- UIkit JS -->
-    <script src="vendor/uikit/js/uikit.min.js"></script>
-    <script src="vendor/uikit/js/uikit-icons.min.js"></script>
+    <script src="/vendor/uikit/js/uikit.min.js"></script>
+    <script src="/vendor/uikit/js/uikit-icons.min.js"></script>
 
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="vendor\fontawesome\css\all.min.css"/>
+    <link rel="stylesheet" href="/vendor\fontawesome\css\all.min.css"/>
 
     <!-- My theme -->
-    <link rel="stylesheet" href="eni-theme.css"/>
+    <link rel="stylesheet" href="/eni-theme.css"/>
 
 
     <meta charset="UTF-8">
     <title>Movies</title>
 </head>
-<body class="eni-page-background">
-<div class="eni-common-page-padding">
+<body>
+<div class="eni-page-background">
 
     <div class="eni-title">
         <h1> Films </h1>
@@ -32,51 +32,28 @@
             <ul class="uk-navbar-nav">
                 <li class="uk-active"><a href="accueil">Accueil</a></li>
                 <li class="uk-parent"><a href="movies">Films</a></li>
-                <li class="uk-parent"><a href="details">Détails</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="eni-movie-bloc uk-margin uk-padding " th:each="movies : ${movies}">
-        <div class="uk-text-center" >
+        <div class="uk-text-center">
             <p th:text="${movies.title}"></p>
             <div>
-                <i class="fas fa-star eni-star-check"></i>
-                <i class="fas fa-star eni-star-check"></i>
-                <i class="fas fa-star eni-star-check"></i>
-                <i class="fas fa-star eni-star-check"></i>
-                <i class="fas fa-star"></i>
+
+                <i th:each="star:${maxStars}" class="fas fa-star"
+                   th:classappend="${movies.getNote() >= star} ? 'eni-star-check'"></i>
+
             </div>
             <p th:text="${movies.year}"></p>
             <p th:text="${movies.duration} +' min'"></p>
             <p th:text="${movies.synopsis}"></p>
         </div>
-        <a class="uk-link-muted eni-link-click eni-link-click" href="details"><img class="eni-img-movie"
-                                                                                   src="thelma.jpg"></img></a>
+        <a class="uk-link-muted eni-link-click eni-link-click" href="details.html"> <img th:src="@{${movies.url}}"
+                                                                                   class="eni-img-movie"/>
+        </a>
 
     </div>
-
-<!--    <div class="eni-movie-bloc uk-margin uk-padding ">-->
-<!--        <div class="uk-text-center" >-->
-<!--            <p>Titre: L'école des licornes</p>-->
-<!--            <div>-->
-<!--                <i class="fas fa-star eni-star-check"></i>-->
-<!--                <i class="fas fa-star eni-star-check"></i>-->
-<!--                <i class="fas fa-star eni-star-check"></i>-->
-<!--                <i class="fas fa-star"></i>-->
-<!--                <i class="fas fa-star"></i>-->
-<!--            </div>-->
-<!--            <p>Année: 2023</p>-->
-<!--            <p>Saisons: 2 </p>-->
-<!--        </div>-->
-
-<!--        <a class="uk-link-muted eni-link-click eni-link-click" href="details"><img class="eni-img-movie" src="unicorn-academy.jpg"></img>-->
-<!--    </div>-->
-
-<!--    <ul>-->
-<!--        <li th:each="movies : ${movies}" th:text="${movies.title}"></li>-->
-<!--    </ul>-->
-
 </div>
 </body>
 </html>

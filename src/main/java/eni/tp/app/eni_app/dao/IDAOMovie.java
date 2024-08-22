@@ -7,4 +7,6 @@ import java.util.List;
 public interface IDAOMovie {
 
     public List<Movie> selectMovies();
+
+    public Movie selectMovieById(long id);
 }

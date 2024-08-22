@@ -20,4 +20,10 @@ public class ArticleManager {
        return movies;
    }
 
+    public Movie getById(long id) {
+        //récupérer un film via la DAO
+        Movie movie = daoMovie.selectMovieById(id);
+        return movie;
+    }
+
 }

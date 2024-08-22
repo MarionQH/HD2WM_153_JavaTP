@@ -2,13 +2,26 @@ html,body {
     height:100%
 }
 
-.eni-common-page-padding {
+.eni-page-background {
+    background-image: url("unicorn-background2.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
     padding: 2rem;
 }
 
-.eni-img-movie {
-    width: 130px;
+.eni-title {
+    text-align: center;
 }
+
+.eni-navbar{
+    border-radius: 1em;
+    background: radial-gradient(circle, rgba(213,219,249,1) 3%, rgba(197,235,242,1) 96%);
+    border-style: solid;
+    border-color: #444444;
+    justify-content: center;
+}
+
 .eni-movie-bloc {
     border-style: solid;
     border-color: #444444;
@@ -19,34 +32,18 @@ html,body {
     flex-direction: row-reverse;
     align-items: center;
     justify-content: space-around;
+    display: inline-block;
+
 }
 
-.eni-page-background {
-    width: 100% ;
-    height: 100% ;
-    background-image: url("unicorn-background2.jpg");
-    background-size: cover;
-}
-
-.eni-title {
-    text-align: center;
+.eni-img-movie {
+    width: 140px;
 }
 
 .eni-link-click {
     display: block;
     text-align: center;
 }
-
-.eni-navbar{
-    border-radius: 1em;
-    background: radial-gradient(circle, rgba(213,219,249,1) 3%, rgba(197,235,242,1) 96%);
-    border-style: solid;
-    border-color: #444444;
-    justify-content: center;
-
-}
-
-
 
 .eni-popcorn{
     border-radius: 3em;
