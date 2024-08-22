@@ -23,8 +23,8 @@
 <body>
 <div class="eni-page-background">
 
-    <div class="eni-title">
-        <h1> Films </h1>
+    <div>
+        <h1 class="eni-title"> Films </h1>
     </div>
 
     <nav class="eni-navbar" uk-navbar>
@@ -36,22 +36,26 @@
         </div>
     </nav>
 
-    <div class="eni-movie-bloc uk-margin uk-padding " th:each="movies : ${movies}">
+    <div class="eni-movie-bloc uk-margin uk-padding " th:each="movie : ${movies}">
         <div class="uk-text-center">
-            <p th:text="${movies.title}"></p>
+            <p th:text="${movie.title}"></p>
             <div>
 
                 <i th:each="star:${maxStars}" class="fas fa-star"
-                   th:classappend="${movies.getNote() >= star} ? 'eni-star-check'"></i>
+                   th:classappend="${movie.getNote() >= star} ? 'eni-star-check'"></i>
 
             </div>
-            <p th:text="${movies.year}"></p>
-            <p th:text="${movies.duration} +' min'"></p>
-            <p th:text="${movies.synopsis}"></p>
+            <p th:text="'Année de sortie: '+${movie.year}"></p>
+            <p th:text="'Durée: '+ ${movie.duration} +' min'"></p>
+            <p th:text="${movie.synopsis}"></p>
         </div>
-        <a class="uk-link-muted eni-link-click eni-link-click" href="details.html"> <img th:src="@{${movies.url}}"
-                                                                                   class="eni-img-movie"/>
+<!--        <a class="uk-link-muted eni-link-click eni-link-click"  th:href="@{details/{id}(id=${movie.id})}">-->
+<!--            <img th:src="@{${movie.url}}" class="eni-img-movie"/>-->
+<!--        </a>-->
+        <a class="uk-link-muted eni-link-click" th:href="@{/details/{id}(id=${movie.id})}">
+            <img th:src="@{${movie.url}}" class="eni-img-movie"/>
         </a>
+
 
     </div>
 </div>

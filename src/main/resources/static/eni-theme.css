@@ -9,9 +9,26 @@ html,body {
     background-position: center;
     padding: 2rem;
 }
-
+.eni-page-background-error{
+    background: linear-gradient(45deg,
+    rgba(255, 0, 0, 0.5),    /* Red */
+    rgba(255, 165, 0, 0.5),  /* Orange */
+    rgba(255, 255, 0, 0.5),  /* Yellow */
+    rgba(0, 255, 0, 0.5),    /* Green */
+    rgba(0, 0, 255, 0.5),    /* Blue */
+    rgba(75, 0, 130, 0.5),   /* Indigo */
+    rgba(238, 130, 238, 0.5) /* Violet */
+    );
+}
 .eni-title {
     text-align: center;
+    font-family: cursive;
+}
+.eni-text {
+    text-align: center;
+    font-size: xx-large;
+    color: #444444;
+    font-family: cursive;
 }
 
 .eni-navbar{
@@ -20,6 +37,7 @@ html,body {
     border-style: solid;
     border-color: #444444;
     justify-content: center;
+    font-family: cursive;
 }
 
 .eni-movie-bloc {
@@ -33,11 +51,21 @@ html,body {
     align-items: center;
     justify-content: space-around;
     display: inline-block;
+    font-family: cursive;
 
 }
 
 .eni-img-movie {
     width: 140px;
+}
+.eni-img-error-404{
+    width: 60%;
+    border-style: solid;
+    border-radius: 3em;
+    border-color: #444444;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .eni-link-click {

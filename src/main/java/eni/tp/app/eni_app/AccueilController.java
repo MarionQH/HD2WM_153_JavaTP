@@ -36,6 +36,10 @@ public class AccueilController {
     @GetMapping("details/{id}")
     public String details(@PathVariable ("id") long id, Model model) {
         Movie movie = articleManager.getById(id);
+        //tester si le film existe
+        if (movie == null) {
+            return "movie-not-found";
+        }
         model.addAttribute("movie",movie);
         return "details";
     }

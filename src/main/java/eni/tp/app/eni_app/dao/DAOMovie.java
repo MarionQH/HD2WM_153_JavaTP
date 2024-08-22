@@ -26,7 +26,9 @@ public class DAOMovie implements IDAOMovie {
         // un filter retourne les éléments filtrés qui respectent la condition
         //.FindFirst permet de retourner un seul élement
         //.get comme c'est nullable je pars du principe qu'il n'est pas null pour l'instant
-        Movie movieToFound = movies.stream().filter(aliment -> aliment.id == id).findFirst().get();
+        //on enlève le point get quand il peut être null
+        //.orElse si tu ne trouves pas, la valeur est null
+        Movie movieToFound = movies.stream().filter(aliment -> aliment.id == id).findFirst().orElse(null);
         return movieToFound;
     }
 }
