@@ -1,40 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="/Vendor/uikit/css/uikit.min.css"/>
-
-    <!-- UIkit JS -->
-    <script src="/vendor/uikit/js/uikit.min.js"></script>
-    <script src="/vendor/uikit/js/uikit-icons.min.js"></script>
-
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="/vendor\fontawesome\css\all.min.css"/>
-
-    <!-- My theme -->
-    <link rel="stylesheet" href="/eni-theme.css"/>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/base}">
 
 
-    <meta charset="UTF-8">
-    <title>Movies</title>
-</head>
-<body>
-<div class="eni-page-background">
+<div  layout:fragment="content">
 
     <div>
         <h1 class="eni-title"> Films </h1>
     </div>
-
-    <nav class="eni-navbar" uk-navbar>
-        <div class="uk-navbar-left">
-            <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="accueil">Accueil</a></li>
-                <li class="uk-parent"><a href="movies">Films</a></li>
-            </ul>
-        </div>
-    </nav>
 
     <div class="eni-movie-bloc uk-margin uk-padding " th:each="movie : ${movies}">
         <div class="uk-text-center">
@@ -58,6 +32,6 @@
 
 
     </div>
-</div>
-</body>
-</html>
+
+
+

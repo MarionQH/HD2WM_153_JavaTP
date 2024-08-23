@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="/vendor/uikit/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="/vendor/uikit/js/uikit.min.js"></script>
+    <script src="/vendor/uikit/js/uikit-icons.min.js"></script>
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+
+    <!-- My theme -->
+    <link rel="stylesheet" href="/eni-theme.css"/>
+
+    <!-- CSS suplémentaire  -->
+    <div layout:fragment="css-file"></div>
+
+    <meta charset="UTF-8">
+    <title> Accueil </title>
+</head>
+
+<body class="eni-page-background">
+
+<nav class="eni-navbar" uk-navbar>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="/accueil">Accueil</a></li>
+            <li class="uk-parent"><a href="/movies">Films</a></li>
+        </ul>
+    </div>
+</nav>
+<br>
+
+<!--Va être remplacé dans les pages qu'il lé'hérite-->
+<div layout:fragment="content">
+</div>
+
+</body>
+</html>
