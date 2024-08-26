@@ -2,15 +2,19 @@ package eni.tp.app.eni_app;
 
 import eni.tp.app.eni_app.bll.ArticleManager;
 import eni.tp.app.eni_app.bo.Movie;
+import eni.tp.app.eni_app.bo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Arrays;
 import java.util.List;
 
+//ne pas oublier ce @ pour que le user reste en session sur tout les controller
+@SessionAttributes ({"loggedUser"})
 @Controller
 public class AccueilController {
 
@@ -42,6 +46,51 @@ public class AccueilController {
         }
         model.addAttribute("movie",movie);
         return "details";
+    }
+
+    @GetMapping("login")
+    public String getConnectForm(Model model) {
+
+        //tester si déja connecté
+        User loggedUser =(User) model.getAttribute("loggedUser");
+
+        if (loggedUser != null) {
+            return "already-logged"; // si déjà connecté retourner page erreur
+            }
+
+        // Préparer ce que tu va envoyer dans le formulaire par défaut = instancier un user vide
+        User user = new User("","");
+
+        // Envoyer le user dans le front/le modèle
+        // pour le mettre dans le formulaire
+        model.addAttribute("user", user);
+
+        return "connect";
+
+    }
+
+    @PostMapping("login")
+    public String postConnectForm(@ModelAttribute User user, Model model,RedirectAttributes redirectAttributes){
+        //tu récupère l'user grace au @modelAttribute
+
+        //mettre user en session
+        model.addAttribute("loggedUser",user);
+
+        //ajouter un message temporaire
+        redirectAttributes.addFlashAttribute("flashMessage","Vous êtes bien connecté");
+
+        //
+        return "redirect:accueil";
+    }
+
+    @GetMapping("logout")
+    public String logout(SessionStatus status) {
+
+        //nettoyer la session (se déconnecter)
+        status.setComplete();
+
+        //rediriger à la page d'accueil
+        return "redirect:accueil";
     }
 
 

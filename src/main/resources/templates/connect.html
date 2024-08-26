@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/base}">
+
+<div layout:fragment="content">
+
+    <div class="eni-title">
+    <h1>Se connecter</h1>
+    </div>
+
+    <form th:object="${user}" method="post" action="/login" class="eni-form">
+
+        <div class=" uk-margin">
+            <input th:field="*{email}" class="uk-input eni-input-form" placeholder="Veuillez saisir votre email"/>
+        </div>
+        <div class=" uk-margin">
+            <input th:field="*{password}" type ="password" class="uk-input eni-input-form" placeholder="Veuillez saisir votre mot de passe"/>
+        </div>
+        <div class=" uk-margin">
+            <input value="Submit" type="submit" class="uk-button uk-button-primary uk-width-1-1 eni-input-form"/>
+        </div>
+
+    </form>

@@ -27,16 +27,29 @@
 
 <body class="eni-page-background">
 
+<!-- Flash message conditionnel -->
+<!-- Affiche un message temporaire si il existe -->
+<div th:if="${flashMessage}" class="uk-padding-small">
+    <div class="uk-alert-primary" uk-alert>
+        <a href class="uk-alert-close" uk-close></a>
+        <p th:text="${flashMessage}"></p>
+    </div>
+</div>
+
 <nav class="eni-navbar" uk-navbar>
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
+
             <li class="uk-active"><a href="/accueil">Accueil</a></li>
             <li class="uk-parent"><a href="/movies">Films</a></li>
+            <li> <a title="Se connecter" th:if="${loggedUser == null}" class="uk-icon-button" href="/login"> <i class="fas fa-sign-in-alt"></i></a>
+                 <a title="Se déconnecter" th:if="${loggedUser}" class="uk-icon-button" href="/logout"> <i class="fas fa-door-open"></i></a>
+            </li>
+
         </ul>
     </div>
 </nav>
 <br>
-
 <!--Va être remplacé dans les pages qu'il lé'hérite-->
 <div layout:fragment="content">
 </div>
