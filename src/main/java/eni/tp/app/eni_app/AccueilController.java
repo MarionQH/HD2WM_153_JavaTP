@@ -3,9 +3,13 @@ package eni.tp.app.eni_app;
 import eni.tp.app.eni_app.bll.ArticleManager;
 import eni.tp.app.eni_app.bo.Movie;
 import eni.tp.app.eni_app.bo.User;
+import eni.tp.app.eni_app.ihm.EniFlashMessage;
+import eni.tp.app.eni_app.ihm.EniIHMHelpers;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -49,13 +53,14 @@ public class AccueilController {
     }
 
     @GetMapping("login")
-    public String getConnectForm(Model model) {
+    public String getConnectForm(Model model,RedirectAttributes redirectAttributes) {
 
         //tester si déja connecté
         User loggedUser =(User) model.getAttribute("loggedUser");
 
         if (loggedUser != null) {
-            return "already-logged"; // si déjà connecté retourner page erreur
+            EniIHMHelpers.sendCommonFlashMessage(redirectAttributes,EniFlashMessage.TYPE_FLASH_ERROR,"ERREUR ! Vous êtes déjà connecté(e)");
+            return "redirect:accueil"; // si déjà connecté retourner page erreur
             }
 
         // Préparer ce que tu va envoyer dans le formulaire par défaut = instancier un user vide
@@ -77,21 +82,62 @@ public class AccueilController {
         model.addAttribute("loggedUser",user);
 
         //ajouter un message temporaire
-        redirectAttributes.addFlashAttribute("flashMessage","Vous êtes bien connecté");
+        // appeler la fonction: EniIHMHelpers
+        EniIHMHelpers.sendCommonFlashMessage(redirectAttributes,EniFlashMessage.TYPE_FLASH_SUCESS,"Vous êtes connecté(e) avec succès");
 
         //
         return "redirect:accueil";
     }
 
     @GetMapping("logout")
-    public String logout(SessionStatus status) {
+    public String logout(SessionStatus status,RedirectAttributes redirectAttributes) {
 
         //nettoyer la session (se déconnecter)
         status.setComplete();
 
+        // appeler la fonction: EniIHMHelpers
+        EniIHMHelpers.sendCommonFlashMessage(redirectAttributes,EniFlashMessage.TYPE_FLASH_SUCESS,"Vous êtes déconnecté(e)");
+
         //rediriger à la page d'accueil
         return "redirect:accueil";
+
+
     }
 
+    @GetMapping("addfilm")
+    public String addFilm(Model model) {
+
+        // Préparer ce que tu va envoyer dans le formulaire par défaut = instancier un film vide
+        Movie movie = new Movie("Thelma la licorne",2024,93,"Une ponette qui chante en rêvant de célébrité accède instantanément à la notoriété lorsqu'elle se transforme en licorne pailletée.","sfrf");
+
+        // Envoyer le film dans le front/le modèle
+        // pour le mettre dans le formulaire
+        model.addAttribute("movie", movie);
+
+        return "form-film";
+    }
+
+    @PostMapping("addfilm")
+    public String postaddFilm(@Valid @ModelAttribute Movie movie,BindingResult bindingResult, RedirectAttributes redirectAttributes ){
+        //tu récupère l'user grace au @modelAttribute
+
+        //objectif tester la validité de la donnée (control surface)
+        // instaler un librairie (dans build gradle: implementation 'org.springframework.boot:spring-boot-starter-validation')
+        //On ajoute @Valid pour savoir quel modèle on veut valider
+        if (bindingResult.hasErrors()) {
+            System.out.println("erreur de contrôle surface");
+            return "form-film";
+        }
+
+        //mettre movie en session
+        //model.addAttribute("addmovie",movie);
+
+        //ajouter un message temporaire
+        // appeler la fonction: EniIHMHelpers
+        EniIHMHelpers.sendCommonFlashMessage(redirectAttributes,EniFlashMessage.TYPE_FLASH_SUCESS,"Votre film est bien enregistré");
+
+        //
+        return "redirect:addfilm";
+    }
 
 }
