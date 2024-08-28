@@ -1,10 +1,12 @@
 package eni.tp.app.eni_app.dao;
 
 import eni.tp.app.eni_app.bo.Movie;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 
+@Profile("mock")
 @Component
 public class DAOMovie implements IDAOMovie {
 
@@ -30,5 +32,10 @@ public class DAOMovie implements IDAOMovie {
         //.orElse si tu ne trouves pas, la valeur est null
         Movie movieToFound = movies.stream().filter(aliment -> aliment.id == id).findFirst().orElse(null);
         return movieToFound;
+    }
+
+    @Override
+    public void save(Movie movie) {
+
     }
 }

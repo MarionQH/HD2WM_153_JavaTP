@@ -25,6 +25,7 @@ public class Movie {
     @NotBlank(message = "l''url doit être renseigné")
     public String url;
     //Temporaire => Plus tard les notes = associations d'avis
+
     public int note = 2;
 
     public Movie(){
@@ -50,6 +51,11 @@ public class Movie {
     //plus tard quand on va supprimer le int note, la note sera la moyenne des avis
     public int getNote(){
         return note;
+    }
+
+    public void setNote(int note){
+        this.note= note;
+
     }
 
     public String getTitle() {
@@ -85,7 +91,7 @@ public class Movie {
     }
 
     public String getUrl() {
-        return url;
+      return url;
     }
 
     public void setUrl(String url) {

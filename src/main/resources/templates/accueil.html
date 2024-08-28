@@ -6,12 +6,16 @@
 <div layout:fragment="content">
 
     <div>
-        <h1 class="eni-title"> Accueil - films pour enfants</h1>
+        <h1 class="eni-title" th:text="#{title.home}"></h1>
     </div>
 
     <div>
+        <p class="eni-text" th:text="#{message.welcome}" ></p>
+    </div>
+    <div>
         <a class="uk-link-muted eni-link-click eni-link-click" href="movies"><img class="eni-popcorn" src="popcorn.jpg" alt="popcorn" ></a>
     </div>
+
 
 </div>
 

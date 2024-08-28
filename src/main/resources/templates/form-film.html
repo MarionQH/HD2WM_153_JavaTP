@@ -54,7 +54,6 @@
             <input th:field="*{url}" class="uk-input eni-input-form"/>
             <ul th:if="${#fields.hasErrors('url')}">
                 <li class= "uk-form-danger" th:each="error:${#fields.errors('url')}" th:text="${error}">
-                </li>
             </ul>
         </div>
 
