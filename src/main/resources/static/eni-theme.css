@@ -8,6 +8,7 @@ html,body {
     background-attachment: fixed;
     background-position: center;
     padding: 2rem;
+    background-repeat: no-repeat;
 }
 .eni-page-background-error{
     background: linear-gradient(45deg,

@@ -27,7 +27,7 @@
 <!--            <img th:src="@{${movie.url}}" class="eni-img-movie"/>-->
 <!--        </a>-->
         <a class="uk-link-muted eni-link-click" th:href="@{/details/{id}(id=${movie.id})}" target="_blank">
-            <img th:src="@{'/'+ ${movie.url}}" class="eni-img-movie"/>
+            <img th:src="${movie.url}" class="eni-img-movie"/>
         </a>
 
 

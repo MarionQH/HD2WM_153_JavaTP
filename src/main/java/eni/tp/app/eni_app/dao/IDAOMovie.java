@@ -8,7 +8,7 @@ public interface IDAOMovie {
 
     public List<Movie> selectMovies();
 
-    public Movie selectMovieById(long id);
+    public Movie selectMovieById(Long id);
 
     public void save(Movie movie);
 }

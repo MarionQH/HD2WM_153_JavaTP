@@ -110,13 +110,22 @@ public class AccueilController {
 
 
     }
-
-    @GetMapping("addfilm")
-    public String addFilm(Model model) {
+    /**
+     * Soi je vais dans la page formulaire avec un id (donc edition)
+     * Ou soi je vais dans la page formulaire sans id (donc creation)
+     * @param model
+     * @return
+     */
+    @GetMapping({"addfilm/{id}","addfilm"})
+    public String addFilm(@PathVariable(required = false) Long id ,Model model) {
 
         // Préparer ce que tu va envoyer dans le formulaire par défaut = instancier un film vide
         Movie movie = new Movie("Thelma la licorne", 2024, 93, "Une ponette qui chante en rêvant de célébrité accède instantanément à la notoriété lorsqu'elle se transforme en licorne pailletée.", "thelma.jpg");
 
+        //S il y a un id le film on le récupère grace à l'id
+        if (id != null){
+            movie = articleManager.getById(id);
+        }
         // Envoyer le film dans le front/le modèle
         // pour le mettre dans le formulaire
         model.addAttribute("movie", movie);

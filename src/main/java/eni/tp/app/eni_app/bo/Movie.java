@@ -4,7 +4,7 @@ import jakarta.validation.constraints.*;
 
 public class Movie {
 
-    public long id;
+    public Long id;
 
     @NotBlank(message = "le titre doit être renseigné")
     @Size(min=1, max=250, message = "Doit avoir au moins 1 caractère")
@@ -31,7 +31,7 @@ public class Movie {
     public Movie(){
 
     }
-    public Movie(long id, String title, int year, int duration, String synopsis,String url) {
+    public Movie(Long id, String title, int year, int duration, String synopsis,String url) {
         this.id = id;
         this.title = title;
         this.year = year;
@@ -96,5 +96,12 @@ public class Movie {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 }

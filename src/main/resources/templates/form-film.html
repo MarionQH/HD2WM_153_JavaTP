@@ -11,6 +11,8 @@
 
     <form th:object="${movie}" method="post" action="/addfilm" class="eni-form">
 
+        <input th:field="*{id}" type="hidden">
+
         <div class=" uk-margin">
             <label for="title">Titre:</label>
             <input th:field="*{title}" class="uk-input eni-input-form"/>

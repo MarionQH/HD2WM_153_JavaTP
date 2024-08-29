@@ -20,14 +20,15 @@ public class ArticleManager {
        return movies;
    }
 
-    public Movie getById(long id) {
+    public Movie getById(Long id) {
         //récupérer un film via la DAO
         Movie movie = daoMovie.selectMovieById(id);
         return movie;
     }
 
     public void saveMovie (Movie movie) {
-        daoMovie.save(movie);
+
+       daoMovie.save(movie);
     }
 
 }

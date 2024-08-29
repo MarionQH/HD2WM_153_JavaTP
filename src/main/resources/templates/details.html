@@ -16,7 +16,7 @@
             <p th:text ="${movie.duration} + ' min'"></p>
             <p th:text ="${movie.synopsis}"> </p>
         </div>
-        <img th:src="@{'/'+ ${movie.url}}" class= "eni-img-movie"></img>
+        <img th:src="${movie.url}" class= "eni-img-movie"></img>
     </div>
 
 </div>

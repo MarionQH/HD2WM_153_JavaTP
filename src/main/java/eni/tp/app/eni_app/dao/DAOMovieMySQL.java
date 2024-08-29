@@ -27,7 +27,7 @@ public class DAOMovieMySQL implements IDAOMovie {
         @Override
         public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
             Movie movie = new Movie();
-            movie.id = rs.getInt("id");
+            movie.id = rs.getLong("id");
             movie.title = rs.getString("title");
             movie.year = rs.getInt("year");
             movie.duration = rs.getInt("duration");
@@ -45,8 +45,8 @@ public class DAOMovieMySQL implements IDAOMovie {
     }
 
     @Override
-    public Movie selectMovieById(long id) {
-        List<Movie> movies = jdbcTemplate.query("SELECT * FROM childrenmovie WHERE id = ?", MOVIE_ROW_MAPPER,id);
+    public Movie selectMovieById(Long id) {
+        List<Movie> movies = jdbcTemplate.query("SELECT * FROM childrenmovie WHERE id = ?", MOVIE_ROW_MAPPER, id);
         if (movies.size() == 0) {
             return null;
         }
@@ -56,8 +56,14 @@ public class DAOMovieMySQL implements IDAOMovie {
 
     @Override
     public void save(Movie movie) {
-        //Insérer en base un aliment
+        //Si le film existe deja alors c'ets un update
+        if (selectMovieById(movie.getId()) != null) {
+            jdbcTemplate.update("UPDATE childrenmovie SET title = ?, year = ?, duration = ?, synopsis = ?, url = ?WHERE id = ?",
+                    movie.title, movie.year, movie.duration, movie.synopsis,movie.url,movie.id);
 
+            //PS Return dans un void retourne pas de valeur mais stop le code
+            return;
+        }
         jdbcTemplate.update("INSERT INTO childrenmovie (title,year,duration,synopsis,url) VALUES (?,?,?,?,?)", movie.title, movie.year, movie.duration, movie.synopsis, movie.url);
     }
 
