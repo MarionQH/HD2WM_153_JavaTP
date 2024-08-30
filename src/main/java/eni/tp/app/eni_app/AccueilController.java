@@ -1,6 +1,8 @@
 package eni.tp.app.eni_app;
 
 import eni.tp.app.eni_app.bll.ArticleManager;
+import eni.tp.app.eni_app.bll.AuthManager;
+import eni.tp.app.eni_app.bll.EniManagerResponse;
 import eni.tp.app.eni_app.bo.Movie;
 import eni.tp.app.eni_app.bo.User;
 import eni.tp.app.eni_app.ihm.EniFlashMessage;
@@ -25,7 +27,8 @@ import java.util.Locale;
 @SessionAttributes({"loggedUser"})
 @Controller
 public class AccueilController {
-
+    @Autowired
+    AuthManager authManager;
     @Autowired
     ArticleManager articleManager;
 
@@ -82,11 +85,27 @@ public class AccueilController {
     }
 
     @PostMapping("login")
-    public String postConnectForm(@ModelAttribute User user, Model model, RedirectAttributes redirectAttributes) {
+    public String postConnectForm(@Valid @ModelAttribute User user, BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
         //tu récupère l'user grace au @modelAttribute
 
-        //mettre user en session
-        model.addAttribute("loggedUser", user);
+        //1:: Controle de surface
+
+        if (bindingResult.hasErrors()) {
+            // Retourner la page avec les erreurs de validation (le format)
+            return "/connect";
+        }
+
+
+        //2 : Controle metier (le manager)
+        EniManagerResponse<User> response = authManager.authenticate(user.email, user.password);
+        //Erreur code 756 retrourner la page avec l'erreur métier
+        if (response.code.equals("756")){
+            return "/connect";
+        }
+
+        //3: Connecter l'user en session
+        //mettre user retrouvé en base dans la session
+        model.addAttribute("loggedUser", response.data);
 
         //ajouter un message temporaire
         // appeler la fonction: EniIHMHelpers
